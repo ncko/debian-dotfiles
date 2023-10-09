@@ -1,1 +1,2 @@
-xterm*font:	*-fixed-*-*-*-18-*
+xterm*faceName: Monospace
+xterm*faceSize: 16
