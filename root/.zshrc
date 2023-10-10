@@ -1,8 +1,10 @@
 # wiki.debian.org/Zsh
-
 alias ls='ls --color=auto'
 alias ll='ls -lah --color=auto'
 alias grep='grep --color=auto'
+
+# scripts
+PATH=~/.dotfiles/scripts:$PATH
 
 # Use vi keybindings
 bindkey -e

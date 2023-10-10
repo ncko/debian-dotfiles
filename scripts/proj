@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+# new usage
+# proj -d what            # new project folder in ~/deck/what
+# proj -n ncko/what       # new project folder in ~/projects/ncko/what
+# proj -c crossfit/cfweb  # clone repo to ~/projects/crossfit/cfweb
+# proj                    # open an existing folder
+
+deck_path=`realpath ~/deck`
+projects_path=`realpath ~/projects`
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+function default() {
+  dotfiles=`realpath ~/.dotfiles`
+  deck_and_projects=`find ~/deck ~/projects/* -mindepth 1 -maxdepth 1 -type d`
+  all_projects=`echo "$deck_and_projects\n$dotfiles"`
+  session=`printf "$all_projects" | fzf-tmux -p --reverse`
+
+  open-session "$session"
+  exit
+}
+
+function on_deck() {
+  mkdir -p "$deck_path/${OPTARG}"
+  open-session "$deck_path/${OPTARG}"
+  exit
+}
+
+function new_project() {
+  mkdir -p "$projects_path/${OPTARG}"
+  open-session "$projects_path/${OPTARG}"
+  exit
+}
+
+function clone_project() {
+  git clone gh:"${OPTARG}" "$projects_path/${OPTARG}"
+  open-session "$projects_path/${OPTARG}"
+  exit
+}
+
+function help() {
+  echo "${bold}USAGE${normal}"
+  echo "  proj [flags]"
+  echo ""
+  echo "${bold}FLAGS${normal}"
+  echo "  -c    clone a repo"
+  echo "  -d    start a new project on deck"
+  echo "  -n    start a new project in your projects folder"
+  echo "  -h    print this message"
+  echo ""
+  echo "${bold}EXAMPLES${normal}"
+  echo "To open an existing project"
+  echo "  $ proj"
+  echo ""
+  echo "clone a repo to ~/projects/ncko"
+  echo "  $ proj -c ncko/.dotfiles"
+  echo ""
+  echo "create a new project on deck"
+  echo "  $ proj -d new_project"
+  echo ""
+  echo "create a new project in ~/projects/<owner>/<project_name>"
+  echo "  $ proj -n ncko/my_new_project"
+  echo ""
+}
+
+if [ $# -eq 0 ]; then
+  default
+fi
+
+while getopts "d:n:c:h" option
+  do
+    case "${option}" in
+      d) on_deck;;
+      n) new_project;;
+      c) clone_project;;
+      h) help && exit;;
+    esac
+  done
+
+help && exit 1
+
