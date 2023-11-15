@@ -35,7 +35,7 @@ function new_project() {
 }
 
 function clone_project() {
-  git clone gh:"${OPTARG}" "$projects_path/${OPTARG}"
+  git clone git@github.com:"${OPTARG}" "$projects_path/${OPTARG}"
   open-session "$projects_path/${OPTARG}"
   exit
 }
