@@ -7,7 +7,7 @@ alias grep='grep --color=auto'
 PATH=~/.dotfiles/scripts:$PATH
 
 # Use vi keybindings
-bindkey -e
+bindkey -v
 
 # modern completion system
 autoload -Uz compinit
@@ -33,3 +33,4 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
+
