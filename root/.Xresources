@@ -1,2 +1,4 @@
 xterm*faceName: Monospace
 xterm*faceSize: 16
+
+XTerm*selectToClipboard: true
