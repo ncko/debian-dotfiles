@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+declare -A urls
+urls[pve2]="192.168.1.13:8006"
+urls[pve3]="192.168.1.22:8006"
+urls[nzbgeek]="nzbgeek.info"
+urls[nzbget]="192.168.1.3:6789"
+urls[omv]="192.168.1.16/#/login"
+urls[plex]="192.168.1.17:32400/web/"
+urls[router]="192.168.1.1"
+
+if [[ ! -z ${urls[$1]} ]]; then
+	brave-browser ${urls[$1]}
+else
+	echo "url $1 does not exist"
+fi
+
