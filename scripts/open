@@ -9,9 +9,14 @@ urls[omv]="192.168.1.16/#/login"
 urls[plex]="192.168.1.17:32400/web/"
 urls[router]="192.168.1.1"
 
-if [[ ! -z ${urls[$1]} ]]; then
-	brave-browser ${urls[$1]}
-else
-	echo "url $1 does not exist"
-fi
+# use with dmenu
+key=$(echo "${!urls[@]}" | sed s/\ /\\n/g | dmenu -i -p "$1")
+brave-browser ${urls[$key]}
+
+# for use in the terminal
+#if [[ ! -z ${urls[$1]} ]]; then
+#	brave-browser ${urls[$1]}
+#else
+#	echo "url $1 does not exist"
+#fi
 
