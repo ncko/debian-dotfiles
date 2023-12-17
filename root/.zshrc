@@ -22,7 +22,7 @@ zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "junegunn/fzf"
-zplug "themes/robbyrussell", from:oh-my-zsh, as:theme
+zplug "themes/bira", from:oh-my-zsh, as:theme
 
 # zplug - install/load new plugins when zsh is started or reloaded
 if ! zplug check --verbose; then
