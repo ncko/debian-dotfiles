@@ -18,11 +18,14 @@ source /usr/share/zplug/init.zsh
 zplug "plugins/git", from:oh-my-zsh
 # zplug "plugins/sudo", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
+zplug "plugins/docker-compose", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "junegunn/fzf"
 zplug "themes/bira", from:oh-my-zsh, as:theme
+
 
 # zplug - install/load new plugins when zsh is started or reloaded
 if ! zplug check --verbose; then
